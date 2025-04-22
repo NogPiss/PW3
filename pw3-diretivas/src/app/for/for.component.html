@@ -1,0 +1,36 @@
+<!-- @for (item of professores; track $index){
+  <li>{{$index+1}} - {{item}}
+    <button (click)="remover($index)" >Remover</button>
+  </li>
+} -->
+
+<!-- @for (item of listaTarefas; track item.id){
+  <li>
+      {{item.id}} - {{item.nome}}
+      <p [hidden] = > - Concluido</p>
+  </li>
+} -->
+
+<h1>Lista de tarefas</h1>
+
+<button (click) = "mostrarTudo()">{{text}}</button>
+
+@for (item of listaTarefas; track item.id){
+  @if(mostraTudo == true){
+    <li>
+      {{item.id}} - {{item.nome}}
+      @if(item.concluido == true){
+        <p> - Concluido</p>
+      }
+    </li>
+  }
+  @else{
+    <li>
+      @if(item.concluido == true){
+        {{item.id}} - {{item.nome}}
+        <p> - Concluido</p>
+      }
+    </li>
+  }
+
+}
