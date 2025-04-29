@@ -14,23 +14,19 @@
 <h1>Lista de tarefas</h1>
 
 <button (click) = "mostrarTudo()">{{text}}</button>
-
-@for (item of listaTarefas; track item.id){
-  @if(mostraTudo == true){
-    <li>
-      {{item.id}} - {{item.nome}}
-      @if(item.concluido == true){
-        <p> - Concluido</p>
+<div class="container">
+    @for (item of listaTarefas; track item.id){
+      @if(mostraTudo == true){
+          <p>{{item.id}} - {{item.nome}} <span>{{item.concluido ? " - Concluido" : ''}}</span></p>
       }
-    </li>
-  }
-  @else{
-    <li>
-      @if(item.concluido == true){
-        {{item.id}} - {{item.nome}}
-        <p> - Concluido</p>
+      @else{
+          @if(item.concluido == true){
+          <p>{{item.id}} - {{item.nome}}<span> - Concluido</span></p>
+          }
       }
-    </li>
-  }
+    }
 
-}
+    @if(!mostraTudo && getConcluidas().length == 0){
+      <p>não há tarefas concluídas</p>
+    }
+</div>

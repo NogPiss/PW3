@@ -10,10 +10,21 @@ export class ForComponent {
 
     professores: string[] = ["Saulo", "Mirian", "Tadã", "Edshow", "Janas", "ROBERTOOOO", "ARDIDO", "GUIGAS", "Debolindíssima"];
 
-    listaTarefas: any[] = [{"id": 1, "nome" : "Varrer o chão", "concluido" : false}, {"id" : 2, "nome" : "LockPick", "concluido" : true}, {"id" : 3, "nome" : "Rasteira no nargas", "concluido" : true}];
+    listaTarefas: any[] = [
+                          {"id": 1, "nome" : "Varrer o chão", "concluido" : false},
+                          {"id" : 2, "nome" : "LockPick", "concluido" : false},
+                          {"id" : 3, "nome" : "Rasteira no nargas", "concluido" : false},
+                          {"id" : 4, "nome" : "Almoçar na sala dos professores", "concluido" : false}
+                        ];
 
     remover(index: number){
       this.professores.splice(index, 1);
+    }
+
+    getConcluidas(){
+      return this.listaTarefas.filter((item) =>{
+        return item.concluido == true;
+      })
     }
 
     mostrarConcluido(item: any){
