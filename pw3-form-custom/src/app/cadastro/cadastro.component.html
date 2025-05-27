@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Usuário:
+    <input formControlName="username">
+    @if(form.get('username')?.touched && form.get('username')?.invalid){
+      <div>
+        @if (form.get('username')?.errors?.['required']) {
+          <small>O campo usuário deve ser preenchido obrigatoriamente</small>
+        }
+      </div>
+    }
+
+  </label>
+
+  <div formGroupName="passwords">
+    <label>Senha:
+      <input type="password" formControlName="password">
+      @if(form.get('passwords')?.get('password')?.touched){
+      <div>
+        @if (form.get('passwords')?.get('password')?.errors?.['required']) {
+          <small>O campo senha deve ser preenchido obrigatoriamente</small>
+        }
+      </div>
+    }
+    </label>
+
+    <label>Confirmar senha:
+      <input type="password" formControlName="confirmPassword">
+    </label>
+    @if (form.get('passwords')?.get('confirmPassword')?.touched) {
+        <div>
+          @if (form.get('passwords')?.get('confirmPassword')?.errors?.['required']) {
+            <small>O campo confirmar senha deve ser preenchido obrigatoriamente.</small>
+          }
+        </div>
+      }
+
+    @if (form.get('passwords')?.errors?.['senhasDiferentes'] && form.get('password')?.touched){
+      <div>
+        <small>A senha inserida não é compatível com a senha</small>
+      </div>
+    }
+
+
+
+
+  </div>
+
+  <button type="submit">Cadastrar</button>
+</form>
